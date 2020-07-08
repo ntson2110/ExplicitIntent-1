@@ -2,7 +2,10 @@ package com.example.explicitintent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class ActivityB extends AppCompatActivity {
@@ -21,4 +24,17 @@ public class ActivityB extends AppCompatActivity {
                 findViewById(R.id.textView1);
         textView.setText(qString);
     }
+    @Override
+    public void finish() {
+        Intent data = new Intent();
+        EditText editText1 = (EditText) findViewById(R.id.editText1);
+        String returnString = editText1.getText().toString();
+        data.putExtra("returnData", returnString);
+        setResult(RESULT_OK, data);
+        super.finish();
+    }
+    public void onClick(View view) {
+        finish();
+    }
+
 }
